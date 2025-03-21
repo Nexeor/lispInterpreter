@@ -108,6 +108,9 @@ class Parser:
             if tokenList[0] == "defun":
                 self.addFunc(tokenList)
 
+            if tokenList[0] == "cond":
+                return self.parseCond(tokenList)
+            
             # Pop next token as operator
             nextToken = tokenList.pop(0)
             subExpression = self.tokenToNode(nextToken)
@@ -122,6 +125,23 @@ class Parser:
         # Inside expression
         else:
             return self.tokenToNode(nextToken)
+    
+    def parseCond(self, tokenList: List[str]) -> Node:
+        tokenList.pop(0)
+        tokenList.pop(0)
+        
+        condNode = Node("cond", SpecialForm.COND)
+        
+        while tokenList[0] != ")":
+            condition = self.parse(tokenList)
+            result = self.parse(tokenList)
+            
+            condNode.children.append(condition)
+            condNode.children.append(result)   
+        
+        tokenList.pop()
+                
+        return condNode
 
     # Given a token, return a node representing it
     def tokenToNode(self, nextToken) -> Node:
@@ -170,5 +190,8 @@ if __name__ == "__main__":
     ast = myParser.runParse("(defun fibonacci (n) \"Computes the nth Fibonacci number using recursion.\" (if (<= n 1) n (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))")
     ast.print_tree()
     
-    ast = myParser.runParse("(defun filter (pred lst) \"Filters a list based on a predicate function.\" (cond ((null lst) '()) ((funcall pred (car lst)) (cons (car lst) (filter pred (cdr lst)))) (t (filter pred (cdr lst)))))")
+    # ast = myParser.runParse("(defun filter (pred lst) \"Filters a list based on a predicate function.\" (cond ((null lst) '()) ((funcall pred (car lst)) (cons (car lst) (filter pred (cdr lst)))) (t (filter pred (cdr lst)))))")
+    # ast.print_tree()
+    
+    ast = myParser.runParse("(cond ((> x 10) (+ 10 5)) ((< x 10) (- 10 5)) ((= x 10) (10)) (t 'other))")
     ast.print_tree()
