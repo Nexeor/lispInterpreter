@@ -1,0 +1,2 @@
+;; Evaluate a quoted atom
+'(a)

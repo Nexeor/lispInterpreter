@@ -5,7 +5,8 @@ from tokens import AtomType, BuiltIn
 class Interpreter:
     def __init__(self):
         self.BUILT_IN = {
-            BuiltIn.ADD : self.add
+            BuiltIn.ADD : self.add,
+            BuiltIn.QUOTE : self.quote
         }
 
     def evaluateExpressions(self, expressions : List[Node]) -> List[Node]:
@@ -13,7 +14,7 @@ class Interpreter:
         for expression in expressions:
             results.append(self.evaluateExpression(expression))
         return results
-    
+
     def evaluateExpression(self, expression: Node) -> Node:
         # expression: BuiltIn, Atom, Symbol
         if expression.type in AtomType:
@@ -30,3 +31,6 @@ class Interpreter:
         for child in expression.children:
             sum += self.evaluateExpression(child).val
         return Node(sum, AtomType.NUMBER)
+
+    def quote(self, expression: Node) -> Node:
+        return expression.children[0]

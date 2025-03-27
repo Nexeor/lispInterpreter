@@ -1,0 +1,8 @@
+["'", '(', 'a', ')']
+(BuiltIn.QUOTE) quote
+  (AtomType.LIST) 
+    (AtomType.SYMBOL) a
+
+(AtomType.LIST) 
+  (AtomType.SYMBOL) a
+
