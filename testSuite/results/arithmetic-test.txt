@@ -1,0 +1,19 @@
+['(', '+', '1', '2', '3', ')']
+(BuiltIn.ADD) +
+  (AtomType.NUMBER) 1
+  (AtomType.NUMBER) 2
+  (AtomType.NUMBER) 3
+
+(AtomType.NUMBER) 6
+
+['(', '+', '(', '+', '1', '2', ')', '(', '+', '1', '2', ')', ')']
+(BuiltIn.ADD) +
+  (BuiltIn.ADD) +
+    (AtomType.NUMBER) 1
+    (AtomType.NUMBER) 2
+  (BuiltIn.ADD) +
+    (AtomType.NUMBER) 1
+    (AtomType.NUMBER) 2
+
+(AtomType.NUMBER) 6
+

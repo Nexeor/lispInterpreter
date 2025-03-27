@@ -1,0 +1,5 @@
+;; Simple add Function
+(+ 1 2 3)
+
+;; Nested add Function
+(+ (+ 1 2) (+ 1 2))
