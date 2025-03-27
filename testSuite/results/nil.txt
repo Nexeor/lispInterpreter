@@ -1,0 +1,8 @@
+["'", '(', 'NIL', ')']
+(BuiltIn.QUOTE) quote
+  (AtomType.LIST) 
+    (AtomType.BOOLEAN) NIL
+
+(AtomType.LIST) 
+  (AtomType.BOOLEAN) NIL
+

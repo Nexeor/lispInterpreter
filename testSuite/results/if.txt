@@ -1,0 +1,8 @@
+['(', 'if', 'NIL', '1', '2', ')']
+(BuiltIn.IF) if
+  (AtomType.BOOLEAN) NIL
+  (AtomType.NUMBER) 1
+  (AtomType.NUMBER) 2
+
+(AtomType.NUMBER) 2
+

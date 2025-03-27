@@ -6,7 +6,8 @@ class Interpreter:
     def __init__(self):
         self.BUILT_IN = {
             BuiltIn.ADD : self.add,
-            BuiltIn.QUOTE : self.quote
+            BuiltIn.QUOTE : self.quote,
+            BuiltIn.IF : self.if_exp
         }
 
     def evaluateExpressions(self, expressions : List[Node]) -> List[Node]:
@@ -34,3 +35,10 @@ class Interpreter:
 
     def quote(self, expression: Node) -> Node:
         return expression.children[0]
+
+    def if_exp(self, expression: Node) -> Node:
+        cond = self.evaluateExpression(expression.children[0])
+        if cond.type != AtomType.BOOLEAN or cond.val != "NIL":
+            return self.evaluateExpression(expression.children[1])
+        else:
+            return self.evaluateExpression(expression.children[2])
